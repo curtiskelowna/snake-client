@@ -1,18 +1,17 @@
+const { moveKeys } = require("./constants");
+const { messagingKeys } = require("./constants");
+
 const handleUserInput = function(key) {
+  const keys = Object.keys(moveKeys);
+  const msgKeys = Object.keys(messagingKeys);
+  if (keys.includes(key)) {
+    connection.write(moveKeys[key]);
+  }
+  if (msgKeys.includes(key)) {
+    connection.write(messagingKeys[key]);
+  }
   if (key === "\u0003") {
     process.exit();
-  }
-  if (key === "w") {
-    connection.write("Move: up");
-  }
-  if (key === "a") {
-    connection.write("Move: left");
-  }
-  if (key === "s") {
-    connection.write("Move: down");
-  }
-  if (key === "d") {
-    connection.write("Move: right");
   }
 };
 
